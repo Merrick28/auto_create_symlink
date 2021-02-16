@@ -28,8 +28,8 @@ function check_exists() {
 
   request="select count(*) from files where path ='"${escape_string}"'"
   RETURN=$(sqlite3 ${DATABASE_FILE} "${request}")
-  if [ ${RETURN} == 0 ]; then
-    if [ ${DEBUG} == 1 ]; then
+  if [ "${RETURN}" == 0 ]; then
+    if [ "${DEBUG}" == 1 ]; then
       echo "Fichier $1 non trouvé"
     fi
     # Création de l'enregistrement
