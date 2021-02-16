@@ -34,6 +34,9 @@ function check_exists() {
     fi
     # Création de l'enregistrement
     request="insert into files (path,link) values ('"${escape_string}"',1)"
+    if [ "${DEBUG}" == 1 ]; then
+      echo "Requete = ${request}"
+    fi
     sqlite3 ${DATABASE_FILE} "${request}"
     # On prend le répertoire du fichier
     directory_path=$(dirname "${relative_path}")
@@ -42,7 +45,7 @@ function check_exists() {
     ln "${SOURCE_DIR}/${relative_path}" "${DEST_DIR}/${relative_path}"
   else
     if [ ${DEBUG} == 1 ]; then
-      echo "Fichier $1 trouvé"
+      echo "Fichier $1 trouvé, acune action"
     fi
   fi
 }
