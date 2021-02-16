@@ -24,7 +24,7 @@ EOF
 # check si un fichier existe dans la db
 function check_exists() {
   relative_path=$(realpath --relative-to "${SOURCE_DIR}" "${1}")
-  escape_string=$(echo "${relative_path}" | sed "s/'/\\\'/g")
+  escape_string=$(echo "${relative_path}" | sed "s/'/''/g")
 
   request="select count(*) from files where path ='"${escape_string}"'"
   if [ "${DEBUG}" == 1 ]; then
