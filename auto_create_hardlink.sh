@@ -27,7 +27,13 @@ function check_exists() {
   escape_string=$(echo "${relative_path}" | sed "s/'/\\\'/g")
 
   request="select count(*) from files where path ='"${escape_string}"'"
+  if [ "${DEBUG}" == 1 ]; then
+     echo "Requete = ${request}"
+  fi
   RETURN=$(sqlite3 ${DATABASE_FILE} "${request}")
+   if [ "${DEBUG}" == 1 ]; then
+      echo "Return = ${RETURN}"
+    fi
   if [ "${RETURN}" == 0 ]; then
     if [ "${DEBUG}" == 1 ]; then
       echo "Fichier $1 non trouvé"
